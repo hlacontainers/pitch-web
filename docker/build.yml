@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+ web:
+  build:
+   context: context
+   dockerfile: Dockerfile
+   args:
+   - VERSION=${VERSION}
+  image: ${REPOSITORY}pitch-web:${VERSION}

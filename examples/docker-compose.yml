@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+ crc:
+  image: ${REPOSITORY}pitch-crc:${PITCH_VERSION}
+  mac_address: ${MAC_ADDRESS}
+  volumes:
+  - license_volume:/etc/.java/.systemPrefs/se/pitch/prti1516e/config:nocopy
+  depends_on:
+  - license
+
+ license:
+  image: ${LICENSE_IMAGE}
+  volumes:
+  - license_volume:/data
+
+# Navigate to http://dockerhost:8080
+# And login as user Administrator, password admin
+ web:
+  image: ${REPOSITORY}pitch-web:${PITCH_WEB_VERSION}
+  ports:
+  - "8080:8080"
+
+volumes:
+ license_volume:
