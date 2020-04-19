@@ -1,0 +1,19 @@
+# CI file for GitLab
+
+# Set defaults for variables
+variables:
+   PITCH_WEB_VERSION: "2_3_2"
+   PITCH_WEB_IMAGE: $CI_REGISTRY_IMAGE:${PITCH_WEB_VERSION}
+
+before_script:
+  - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+
+stages:
+  - build
+
+# Build the WEB image
+buildjob:
+  stage: build
+  script:
+    - docker build -t $PITCH_WEB_IMAGE --build-arg VERSION=$PITCH_WEB_VERSION docker/context
+    - docker push $PITCH_WEB_IMAGE
