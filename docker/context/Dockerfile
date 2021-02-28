@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-FROM tomcat:10-jdk11-openjdk
+FROM tomcat:9-jdk8-openjdk
 
 ARG VERSION
 
